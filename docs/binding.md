@@ -6,7 +6,7 @@
 
 * URL 参数
 * RESTful 风格
-* form-data
+* form-data（或 x-www-form-urlencoded）
 * JSON
 
 前两种形式的请求数据均直接体现在 URL 中，而后两种则是在请求 body 中。
