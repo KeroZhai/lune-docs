@@ -4,9 +4,9 @@
 
 ## 使用标记来配置路由
 
-在类的文档注释中使用`@Mapping`标记来配置第一级 URL 映射，即 URL 与接口类的映射。
+在类的文档注释中使用`@mapping`标记来配置第一级 URL 映射，即 URL 与接口类的映射。
 
-在方法的文档注释中使用`@GetMapping`、`@PostMapping`、`@PutMapping`、`@PatchMapping`和`@DeleteMapping`标记（分别对应五种请求方式）来配置第二级 URL 映射，即 URL 与接口方法的映射。
+在方法的文档注释中使用`@get`、`@post`、`@put`、`@patch`和`@delete`标记（分别对应五种请求方式）来配置第二级 URL 映射，即 URL 与接口方法的映射。
 
 接口类的路由配置是必须的，且必须有指定的值。接口方法的路由配置不一定需要指定值，如果为空，则默认映射为`/`。例如：
 
@@ -15,12 +15,12 @@
 namespace app\controller;
 
 /**
- * @Api
- * @Mapping foo
+ * @api
+ * @mapping foo
  */
 class FooController {
     /**
-     * @GetMapping
+     * @get
      */
     function bar() {
         return "Hello world";
@@ -38,7 +38,7 @@ class FooController {
 
 ## 路由标记的值
 
-一般情况下，路由标记的值是普通的字符串，可以以`/`开头，也可以省略，例如`@GetMapping /foo`和`@GetMapping foo`都是合法的配置。
+一般情况下，路由标记的值是普通的字符串，可以以`/`开头，也可以省略，例如`@get /foo`和`@get foo`都是合法的配置。
 
 如果要使用 RESTful 风格的路由，例如`/user/1`的形式，则有所不同。例如：
 
@@ -47,12 +47,12 @@ class FooController {
 namespace app\controller;
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController {
     /**
-     * @GetMapping /{id}
+     * @get /{id}
      */
     function getUserById(int $id) {
         return $id;

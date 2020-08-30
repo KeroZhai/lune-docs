@@ -10,13 +10,13 @@ namespace app\controller;
 use app\core\repository\Repository;
 
 /**
- * @Api
- * @Mapping foo
+ * @api
+ * @mapping foo
  */
 class FooController {
     /**
-     * @GetMapping
-     * @Injected repository
+     * @get
+     * @injected repository
      */
     function bar(Repository $repository) {
         // 直接使用
@@ -37,20 +37,20 @@ use app\core\repository\Repository;
 
 /**
  * 用户信息
- * @TableName user
+ * @table user
  */
 class UserInfo {
     public $name;
 }
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController {
     /**
-     * @PostMapping
-     * @Injected repository
+     * @post
+     * @injected repository
      */
     function addUser(Repository $repository, UserInfo $userInfo) {
         $repository->save($userInfo);
@@ -60,18 +60,18 @@ class UserController {
 
 ```
 
-在用户信息类上使用`@TableName`标记来指定对应的数据库表。由于自动构造 SQL 语句时，将会默认将驼峰风格的属性名转换为下划线分隔的全小写字母作为表中的字段名，如果数据库表字段命名风格不同，可以使用`@ColumnName`标记指定表中实际的字段名。例如：
+在用户信息类上使用`@table`标记来指定对应的数据库表。由于自动构造 SQL 语句时，将会默认将驼峰风格的属性名转换为下划线分隔的全小写字母作为表中的字段名，如果数据库表字段命名风格不同，可以使用`@column`标记指定表中实际的字段名。例如：
 
 ``` php
 <?php
 
 /**
  * 用户信息
- * @TableName user
+ * @table user
  */
 class UserInfo {
     /**
-     * @ColumnName Name
+     * @column Name
      */
     public $name;
 }
@@ -142,13 +142,13 @@ class UserInfo {
 }
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController {
     /**
-     * @GetMapping
-     * @Injected $repository
+     * @get
+     * @injected $repository
      */
     function getUserPage(Repository $repository) {
         $pageInfo = $repository->queryForPage("SELECT * FROM user", 1, 10, UserInfo::class);
@@ -215,25 +215,25 @@ class UserController {
 
 ``` php
 /**
- * @Before
- * @WithTag @Transactional
- * @Injected repository
+ * @before
+ * @with @transactional
+ * @injected repository
  */
 function beginTransaction(Repository $repository) {
     $repository->beginTransaction();
 }
 
 /**
- * @After
- * @WithTag @Transactional
- * @Injected repository
+ * @after
+ * @with @transactional
+ * @injected repository
  */
 function commitTransaction(Repository $repository) {
     $repository->commit();
 }
 ```
 
-当接口方法文档注释中包含了`@Transactional`标记时，将会自动开启并提交事务。
+当接口方法文档注释中包含了`@transactional`标记时，将会自动开启并提交事务。
 
 ?> 由于接口方法中未处理的异常被统一捕获后，后置拦截器将不会执行，即事务不会提交，因此无须进行显式的回滚。
 
@@ -271,13 +271,13 @@ class AnotherRepository extends Repository {
 }
 
 /**
- * @Api
- * @Mapping foo
+ * @api
+ * @mapping foo
  */
 class FooController {
     /**
-     * @GetMapping
-     * @Injected repository anotherRepository
+     * @get
+     * @injected repository anotherRepository
      */
     function bar(Repository $repository, AnotherRepository $anotherRepository) {
     }

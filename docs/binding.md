@@ -22,12 +22,12 @@ URL 参数，也即`/user?id=1&name=kero`的形式，例如有如下接口：
 namespace app\controller;
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController {
     /**
-     * @GetMapping
+     * @get
      */
     function getUserById(int $id, string $name) {
         return "$id $name";
@@ -55,12 +55,12 @@ URL 参数可以与 form-data 或 JSON 数据共存，例如有如下接口：
 namespace app\controller;
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController {
     /**
-     * @PostMapping /{id}
+     * @post /{id}
      */
     function getUserByIdAndName(int $id, string $name) {
         return "$id: $name";
@@ -92,12 +92,12 @@ class UserController {
 namespace app\controller;
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController {
     /**
-     * @GetMapping /{id}
+     * @get /{id}
      */
     function getUserByIdAndName(string $id) {
         return explode(',', $id);
@@ -137,12 +137,12 @@ class UserInfo {
 }
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController {
     /**
-     * @PostMapping
+     * @post
      */
     function addUser(UserInfo $userInfo) {
         return StatusResult::("新增成功", $userInfo);
@@ -190,7 +190,7 @@ class UserController {
 
 ``` php
 /**
- * @PostMapping
+ * @post
  */
 function getUserByIdAndName(int $id, UserInfo $userInfo) {
     return StatusResult::("新增成功", ["id" => $id, "userInfo" => $userInfo]);

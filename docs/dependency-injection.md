@@ -23,8 +23,8 @@ class B {
 }
 
 /**
- * @Api
- * @Mapping foo
+ * @api
+ * @mapping foo
  */
 class FooController {
 
@@ -32,7 +32,7 @@ class FooController {
 
     /**
      * 构造方法注入
-     * @Injected a
+     * @injected a
      */
     function __construct(A $a) {
         $this->a = $a;
@@ -40,8 +40,8 @@ class FooController {
 
     /**
      * 接口方法直接注入
-     * @GetMapping
-     * @Injected b
+     * @get
+     * @injected b
      */
     function testInjection(B $b) {
         $a = $this->a;

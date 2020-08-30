@@ -2,19 +2,17 @@
 
 ## 安装
 
-只需要把框架下载下来，放到一个合适的目录，就算完成“安装”。
-
-?> Lune 实在是一个非常简单的框架，如果使用 Composer 反而会增加学习成本，并且没有必要。
+只需要把框架下载下来，放到一个合适的目录，就算完成*“安装”*。
 
 ## 目录结构
 
 Lune 的目录结构如下：
 
 ```
-APP_ROOT（项目逻辑主目录）
+APP_ROOT（项目逻辑根目录）
  |-- conf
  |    ╰-- config.ini（配置文件）
- |-- controller（自定义控制器存放目录）
+ |-- controller（默认接口类存放目录）
  |-- core（核心组件，略）
  |-- index（项目实际主目录）
  |    |-- static（静态资源存放目录）
@@ -25,7 +23,7 @@ APP_ROOT（项目逻辑主目录）
 
 ## 一些准备工作 
 
-虽然在逻辑上，应用的主目录应该是`APP_ROOT`，但考虑到安全性，**应该只有`APP_ROOT/index`目录能够被直接访问**，也即对 Apache 来说，应用的实际的主目录应该是`APP_ROOT/index`。
+虽然在逻辑上，应用的根目录应该是`APP_ROOT`，但考虑到安全性，**应该只有`APP_ROOT/index`目录能够被直接访问**，也即对 Apache 来说，应用的实际的根目录应该是`APP_ROOT/index`。
 
 由于涉及到了 URL 重写，所以需要先修改 Apache 的配置文件`httpd.conf`（如果配置了虚拟主机则是`httpd-vhosts.conf`），将与项目对应的`<Directory></Directory>`中的`AllowOverride`由`None`改为`All`。以虚拟主机的配置为例：
 
@@ -44,7 +42,21 @@ NameVirtualHost *:PORT
 
 配置完成后，直接在浏览器中访问`localhost:PORT`或`localhost:PORT/welcome`，将会显示欢迎页面。
 
-## 什么是自定义标记？
+## 命名空间规范
+
+Lune 的自动加载机制遵循了 PSR-4 规范，简而言之，需要遵守以下约定：
+
+* 一个文件中只有一个类，且类名必须和文件名保持一致，大小写敏感
+* 类所在的[命名空间](https://www.php.net/manual/zh/language.namespaces.rationale.php)需必须和实际的目录对应，以`app`开头，对应项目根目录（如无特别说明，均指代逻辑根目录）
+
+例如：
+
+| 类名 | 命名空间 | 实际路径 |
+| :------------: | :------------: | :------------: |
+| `UserController` |  `app\controller` | APP_ROOT/controller/UserController.php |
+|  `UserPO` | `app\po`  | APP_ROOT/po/UserPO.php |
+
+## 什么是标记？
 
 类似于 Javadoc，PHP 同样支持文档注释。文档注释分为类文档注释和方法文档注释两种，用于对类或方法进行描述。例如：
 

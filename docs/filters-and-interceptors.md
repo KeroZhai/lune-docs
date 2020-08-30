@@ -6,7 +6,7 @@
 
 过滤器可以定义多个，会在接口方法被执行之前**按照顺序调用**，用来对请求数据预处理，例如将请求数据强制转换为utf-8编码。
 
-使用`@Filter`标记定义一个过滤器，可以定义名为`&$__metadata__`的形参，用于接收请求数据的**引用**。
+使用`@filter`标记定义一个过滤器，可以定义名为`&$__metadata__`的形参，用于接收请求数据的**引用**。
 
 !> 请求数据以一个关联数组的形式提供，如果不加`&`，则取到的数据只是值的**一份拷贝**，对其改变不会影响到实际的数据。
 
@@ -17,12 +17,12 @@
 namespace app\controller;
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController {
     /**
-     * @Filter
+     * @filter
      */
     function doSomeFilterStuff(&$__metadata__) {
         // 在请求数据中新增id=1
@@ -30,7 +30,7 @@ class UserController {
     }
 
     /**
-     * @GetMapping
+     * @get
      */
     function getUserById(int $id) {
         return $id;
@@ -43,7 +43,7 @@ class UserController {
 
 ## 拦截器
 
-使用`@Before`定义一个前置拦截器，前置拦截器同样会根据配置在接口方法被执行之前按顺序调用，但在过滤器方法之后。前置拦截器用于在接口方法执行之前做一些操作，例如判断是否登录等。使用`@After`定义一个后置拦截器，后置拦截器在接口方法之后调用。
+使用`@before`定义一个前置拦截器，前置拦截器同样会根据配置在接口方法被执行之前按顺序调用，但在过滤器方法之后。前置拦截器用于在接口方法执行之前做一些操作，例如判断是否登录等。使用`@After`定义一个后置拦截器，后置拦截器在接口方法之后调用。
 
 任意一个前置拦截器方法中如果有返回值，将不会执行后续方法，以达到拦截请求的效果。后置拦截器的返回值则会始终被忽略。例如：
 
@@ -52,19 +52,19 @@ class UserController {
 namespace app\controller;
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController {
     /**
-     * @Before
+     * @before
      */
     function intercept($__metadata__) {
         return "Intercepted successfully";
     }
 
     /**
-     * @GetMapping
+     * @get
      */
     function sayHello() {
         return "Hello";
@@ -92,35 +92,35 @@ class UserController {
 
 !> **注意**：不同于过滤器方法，传入拦截器方法的`$__metadata__`并不是引用，因此如果加上`&`将会报错。
 
-默认情况下，拦截器方法始终会被执行，但可以使用`@With`标记指定一个标记名，当且仅当指定的接口方法的文档指数中存在指定的标记时，拦截器方法才会被执行。例如：
+默认情况下，拦截器方法始终会被执行，但可以使用`@with`标记指定一个标记名，当且仅当指定的接口方法的文档指数中存在指定的标记时，拦截器方法才会被执行。例如：
 
 ``` php
 <?php
 namespace app\controller;
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController {
     /**
-     * @Before
-     * @With @SomeTag
+     * @before
+     * @with @someTag
      */
     function intercept($__metadata__) {
         return "Intercepted successfully";
     }
 
     /**
-     * @SomeTag
-     * @GetMapping /withTag
+     * @someTag
+     * @get /withTag
      */
     function withTag() {
-        return "With tag";
+        return "with tag";
     }
 
     /**
-     * @GetMapping /withoutTag
+     * @get /withoutTag
      */
     function withoutTag() {
         return "Without tag"
@@ -151,14 +151,14 @@ namespace app\controller;
 use app\core\controller\AbstractController;
 
 /**
- * @Api
- * @Mapping /user
+ * @api
+ * @mapping /user
  */
 class UserController extends AbstractController {
     /**
-     * @GetMapping
-     * @RequiresAuthentication
-     * @RequiresRole admin
+     * @get
+     * @requiresAuthentication
+     * @requiresRole admin
      */
     function getUser() {
     }

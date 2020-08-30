@@ -9,13 +9,13 @@ namespace app\controller;
 use app\core\request\Request;
 
 /**
- * @Api
- * @Mapping foo
+ * @api
+ * @mapping foo
  */
 class FooController {
     /**
-     * @GetMapping
-     * @Injected request
+     * @get
+     * @injected request
      */
     function bar(Request $request) {
         return $request->getCookieParams();
