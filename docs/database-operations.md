@@ -203,7 +203,7 @@ class UserController {
 
 ### 查询PDOStatement
 
-使用`$repository->execute(string $sql, array $paramValues=null, array $paramTypes=null)`方法会返回一个`PDOStatement`对象（关于`PDOStaement`，详见 [php PDO](https://www.runoob.com/php/php-pdo.html)），上述方法实际上都是基于此方法进行了拓展。
+使用`$repository->execute(string $sql, array $paramValues=null, array $paramTypes=null)`方法会返回一个`PDOStatement`对象（关于`PDOStaement`，详见 [php PDO](https://www.php.net/manual/zh/class.pdostatement.php)），上述方法实际上都是基于此方法进行了拓展。
 
 > 以上所有方法均会以抛出异常的形式报错。
 
@@ -241,7 +241,7 @@ function commitTransaction(Repository $repository) {
 
 ## 多数据库
 
-如果需要使用到多个数据库，则需要借助`app\core\repository\MysqlDB`类，它用于获取数据库连接（一个[`PDO`](https://www.runoob.com/php/php-pdo-connections.html)类对象），该类维护一个数组用于暂存数据库连接。
+如果需要使用到多个数据库，则需要借助`app\core\repository\MysqlDB`类，它用于获取数据库连接（一个[`PDO`](https://www.php.net/manual/zh/class.pdo.php)类对象），该类维护一个数组用于暂存数据库连接。
 
 !>  由于 php 并不会常驻内存，一次请求完成后相关的资源**均会被回收**，因此将数据库连接暂存于数组中仅仅是为了避免在**同一次请求**中重复创建相同的数据库连接。**数据库连接并不能在多个请求之间共享**。
 

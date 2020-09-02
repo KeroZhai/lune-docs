@@ -48,7 +48,7 @@ class UserController {
 
 URL 参数可以与 form-data 或 JSON 数据共存，例如有如下接口：
 
-!> **注意** 如果有同名的参数，URL 参数将会被 body 中的参数覆盖。
+!> 如果有同名的参数，URL 参数将会被 body 中的参数**覆盖**。
 
 ``` php
 <?php
@@ -69,7 +69,7 @@ class UserController {
 
 ```
 
-?> 在**[RFC7231](https://datatracker.ietf.org/doc/rfc7231/)**中关于`GET`请求的定义中提到，`GET`请求中的 body 数据是没有意义的，并且会被忽略，因此这里不能使用`GET`请求。
+?> 在 [RFC7231](https://datatracker.ietf.org/doc/rfc7231/) 中关于`GET`请求的定义中提到，`GET`请求中的 body 数据是没有意义的，并且会被忽略，因此这里不能使用`GET`请求。
 
 在 form-data 中添加`name=kero`的表项，或是使用 JSON 格式的数据：
 
@@ -106,7 +106,7 @@ class UserController {
 
 ```
 
-此时`$id`的值为`"1,2,3"`则输出为：
+此时`$id`的值为`"1,2,3"`，则输出为：
 
 ``` json
 [
