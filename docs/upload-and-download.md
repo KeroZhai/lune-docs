@@ -28,7 +28,7 @@ function upload(UploadedFile $file) {
 | `getName()` |  `string` | 返回文件名（包含扩展名） |
 |  `getMediaType()` | `string`  | 返回文件类型 |
 |  `getSize()` | `int`  | 返回文件大小，以字节为单位 |
-|  `getError()` | `int`  | 返回错误代码，没有错误则为0 |
+|  `getError()` | `int`  | 返回错误代码，没有错误则为 0 |
 | `saveTo(string $targetLocation)`  | `bool`  | 将上传后的文件保存到指定位置，成功返回`true` |
 
 !> 上传的文件最终必须要通过`saveTo()`方法保存，否则本次请求结束后，临时文件将会被自动清理。

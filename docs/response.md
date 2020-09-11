@@ -21,7 +21,7 @@
 | ` error(string $message="Operation failed", $data=null)` | 返回操作失败时的结果，`$success`为`false`，`$staus`为`200`  |
 | `status(int $status, string $message=null)` | 返回指定状态码的结果  |
 
-默认情况下，所有接口的返回值均会以 json 格式输出，但也可以通过配置文件配置为返回原始数据。（关于配置文件，详见[配置](config)。）
+默认情况下，所有接口的返回值均会以 JSON 格式输出，但也可以通过配置文件配置为返回原始数据。（关于配置文件，详见[配置](config)。）
 
 直接在接口方法中返回`StatusResult::success()`，由于没有指定`$message`和`$data`的值，将会得到如下默认输出：
 
