@@ -1,12 +1,12 @@
 # 请求对象
 
-框架将请求的相关信息封装到了`app\core\request\Request`类对象中，可以通过依赖注入的方式获取到。例如：
+框架将请求的相关信息封装到了`app\lune\request\Request`类对象中，可以通过依赖注入的方式获取到。例如：
 
 ``` php
 <?php
 namespace app\controller;
 
-use app\core\request\Request;
+use app\lune\request\Request;
 
 /**
  * @api

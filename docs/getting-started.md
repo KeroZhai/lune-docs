@@ -6,14 +6,14 @@
 
 ## 目录结构
 
-Lune 的目录结构如下：
+一个使用 Lune 的项目目录结构应当如下：
 
 ```
 APP_ROOT（项目逻辑根目录）
  |-- conf
  |    ╰-- config.ini（配置文件）
  |-- controller（默认接口类存放目录）
- |-- core（核心组件，略）
+ |-- lune（Lune 目录）
  |-- index（项目实际主目录）
  |    |-- static（静态资源存放目录）
  |    |-- .htaccess（URL 重写规则）
@@ -25,7 +25,7 @@ APP_ROOT（项目逻辑根目录）
 
 虽然在逻辑上，应用的根目录应该是`APP_ROOT`，但考虑到安全性，**应该只有`APP_ROOT/index`目录能够被直接访问**，也即对 Apache 来说，应用的实际的根目录应该是`APP_ROOT/index`。
 
-由于涉及到了 URL 重写，所以需要先修改 Apache 的配置文件`httpd.conf`（如果配置了虚拟主机则是`httpd-vhosts.conf`），将与项目对应的`<Directory></Directory>`中的`AllowOverride`由`None`改为`All`。以虚拟主机的配置为例：
+由于涉及到了 URL 重写，所以需要先修改 Apache 的配置文件，将与项目对应的`<Directory></Directory>`中的`AllowOverride`由`None`改为`All`。以虚拟主机的配置为例：
 
 ```
 NameVirtualHost *:PORT

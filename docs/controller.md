@@ -15,7 +15,7 @@ APP_ROOT（项目逻辑根目录）
 
 那么`scan-pattern`应该配置为：`/controller/*, /controller/sub/*, /another/*`。
 
-接口类本身不需要继承任何类或实现任何接口，但也可以继承`app\core\AbstractController`类以使用其中提供的拦截器方法，或是继承自定义的父类以进行统一配置。
+接口类本身不需要继承任何类或实现任何接口，但也可以继承`app\lune\controller\AbstractController`类以使用其中提供的拦截器方法，或是继承自定义的父类以进行统一配置。
 
 ## 分类
 

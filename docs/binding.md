@@ -123,7 +123,7 @@ class UserController {
 ``` php
 <?php
 namespace app\controller;
-use app\core\controller\StatusResult;
+use app\lune\response\StatusResult;
 
 /**
  * 用户信息

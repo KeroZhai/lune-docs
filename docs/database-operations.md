@@ -1,13 +1,13 @@
 # 数据库操作
 
-框架目前支持的数据库是 MySQL。`app\core\repository\Repository`类提供了一系列操作数据库的方法，使用前需要实例化。
+框架目前支持的数据库是 MySQL。`app\lune\repository\Repository`类提供了一系列操作数据库的方法，使用前需要实例化。
 
 在项目只有一个数据库的情况下，直接实例化一个默认的`Repository`类对象即可，或是采用依赖注入的方式，在接口方法中直接使用。例如：
 
 ``` php
 <?php
 namespace app\controller;
-use app\core\repository\Repository;
+use app\lune\repository\Repository;
 
 /**
  * @api
@@ -32,8 +32,8 @@ class FooController {
 ``` php
 <?php
 namespace app\controller;
-use app\core\controller\StatusResult;
-use app\core\repository\Repository;
+use app\lune\response\StatusResult;
+use app\lune\repository\Repository;
 
 /**
  * 用户信息
@@ -131,8 +131,8 @@ $repository->queryForOne("SELECT * FROM user WHERE name = ?", UserInfo::class, [
 ``` php
 <?php
 namespace app\controller;
-use app\core\controller\StatusResult;
-use app\core\repository\Repository;
+use app\lune\response\StatusResult;
+use app\lune\repository\Repository;
 
 /**
  * 用户信息
@@ -260,8 +260,8 @@ function commitTransaction(Repository $repository) {
 ``` php
 <?php
 namespace app\controller;
-use app\core\repository\MysqlDB;
-use app\core\repository\Repository;
+use app\lune\repository\MysqlDB;
+use app\lune\repository\Repository;
 
 class AnotherRepository extends Repository {
     public function __construct() {

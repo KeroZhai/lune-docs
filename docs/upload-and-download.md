@@ -4,7 +4,7 @@
 
 和普通的请求参数类似，上传后的文件也是通过[参数绑定](#参数绑定)来传入到接口方法中的。
 
-对于单文件上传，在接口方法中使用`app\core\request\UploadedFile`类型的参数来接收，参数名必须和指定的`name`一致。例如在表单中：
+对于单文件上传，在接口方法中使用`app\lune\request\UploadedFile`类型的参数来接收，参数名必须和指定的`name`一致。例如在表单中：
 
 ``` html
 <form action="XXX" method="POST" enctype="multipart/form-data">
@@ -33,7 +33,7 @@ function upload(UploadedFile $file) {
 
 !> 上传的文件最终必须要通过`saveTo()`方法保存，否则本次请求结束后，临时文件将会被自动清理。
 
-对于多文件上传，区别是需要用`app\core\request\UploadedFiles`类型的参数来接收。该类具有类似于数组的行为，其中的每个元素都是一个`UploadedFile`类对象，可以使用`count()`方法统计文件数，也可以进行遍历操作。例如：
+对于多文件上传，区别是需要用`app\lune\request\UploadedFiles`类型的参数来接收。该类具有类似于数组的行为，其中的每个元素都是一个`UploadedFile`类对象，可以使用`count()`方法统计文件数，也可以进行遍历操作。例如：
 
 ``` php
 function upload(UploadedFiles $files) {
@@ -49,7 +49,7 @@ function upload(UploadedFiles $files) {
 
 文件作为一种特殊的响应数据，需要进行一些额外的配置。
 
-首先需要给定文件路径来获取一个指定的`app\core\io\File`类对象，如：
+首先需要给定文件路径来获取一个指定的`app\lune\io\File`类对象，如：
 
 ``` php
 $file = new File("lune.png");

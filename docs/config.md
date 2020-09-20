@@ -19,6 +19,10 @@ conf 目录下的 config.ini 文件用于对项目进行一些简单的配置：
 ; 默认：/controller/*
 ; scan-pattern = 
 
+; Session 过期时间，单位：秒
+; 默认：1800（30 分钟）
+; session-alive-time = 
+
 ; 首选数据库配置
 [Datasource]
 ; address =

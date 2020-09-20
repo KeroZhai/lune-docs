@@ -143,12 +143,12 @@ class UserController {
 
 ## 示例
 
-基于拦截器，Lune 提供了一个简单的认证和鉴权功能。在`app\core\controller\AbstractController`类中分别定义了验证登录和用户角色的拦截器方法，使用时需要将接口类继承此类，例如：
+基于拦截器，Lune 提供了一个简单的认证和鉴权功能。在`app\lune\controller\AbstractController`类中分别定义了验证登录和用户角色的拦截器方法，使用时需要将接口类继承此类，例如：
 
 ``` php
 <?php
 namespace app\controller;
-use app\core\controller\AbstractController;
+use app\lune\controller\AbstractController;
 
 /**
  * @api
@@ -166,7 +166,7 @@ class UserController extends AbstractController {
 
 ```
 
-然后通过`app\core\util\AuthUtils`类来管理登录状态，它包含以下方法：
+然后通过`app\lune\util\AuthUtils`类来管理登录状态，它包含以下方法：
 
 | 方法定义   | 说明  |
 | :------------: | :------------: |
